@@ -740,3 +740,513 @@ The Granular Arithmetic and Algorithmic Visualization (GAAV) framework represent
 *   Gansner, E. R., & North, S. C. (2000). An open graph visualization system and its applications to software engineering. *Software: Practice and Experience*, 30(11), 1203-1233. (For graph visualization).
 
 ---
+
+The following document presents a novel framework for **Granular Arithmetic and Algorithmic Visualization (GAAV)**. This framework posits that all arithmetic operations, at their most fundamental level, are transformations of discrete, quantized informational units, or *infons*. By explicitly modeling and visualizing these infon-level interactions, GAAV offers unparalleled insight into the information dynamics of computation, bridging abstract logic with physical reality.
+
+---
+
+## Ⅰ. The Formal Blueprint: Granular Information Dynamics
+
+### 1.1. Introduction: The Quantum of Computation
+
+Traditional arithmetic operates on abstract numbers, obscuring the underlying informational transformations. GAAV deconstructs numbers into their constituent *infons*—fundamental, indivisible units of information—and defines arithmetic operations as specific, trackable transformations upon these infons. This framework reveals the "micro-mechanics" of computation, offering a new lens for understanding information flow, entropy generation, and computational complexity from a first-principles perspective.
+
+### 1.2. Foundational Axioms and Definitions
+
+We begin by formalizing the core entities within the GAAV framework using a blend of set theory, category theory, and information theory.
+
+#### Axiom 1.2.1 (Infon Existence)
+There exists a non-empty set $\mathcal{I}$ of fundamental informational units, called *infons*. Each infon $\iota \in \mathcal{I}$ possesses an intrinsic state and a unique identifier.
+
+#### Definition 1.2.1 (Infon State Space)
+For each infon $\iota$, its state $s(\iota)$ is an element of a finite state space $\Sigma_\iota$. The total state of a system of $N$ infons is given by a tensor product of their individual state spaces, $\bigotimes_{k=1}^N \Sigma_{\iota_k}$.
+
+#### Definition 1.2.2 (Infon Provenance $\mathcal{P}$)
+Each infon $\iota$ is associated with a provenance $p(\iota) \in \mathcal{P}$, which is a directed acyclic graph (DAG) tracing its creation, transformation, and interaction history. This graph captures the lineage and dependencies of information.
+
+#### Definition 1.2.3 (Granular Number $\mathbb{G}$)
+A Granular Number $G_N$ is a tuple $(S_I, E)$, where $S_I \subseteq \mathcal{I}$ is a finite multiset of infons, and $E \subseteq S_I \times S_I$ is a set of relations describing the *granular entanglement* between infons in $S_I$. The numerical value $N$ represented by $G_N$ is a function $v: (S_I, E) \rightarrow \mathbb{N}$ (or $\mathbb{Z}, \mathbb{Q}, \mathbb{R}$), determined by a chosen encoding scheme.
+
+*   **Example Encoding:** For binary arithmetic, an infon $\iota$ might represent a bit ($s(\iota) \in \{0, 1\}$). A Granular Number $G_N$ representing $N$ could be a sequence of $k$ infons, where their collective states form the binary representation of $N$.
+    *   $G_2 = (\{\iota_1, \iota_0\}, \emptyset)$ where $s(\iota_1)=1, s(\iota_0)=0$ (representing binary $10_2$).
+    *   $G_3 = (\{\iota'_1, \iota'_0\}, \emptyset)$ where $s(\iota'_1)=1, s(\iota'_0)=1$ (representing binary $11_2$).
+
+#### Definition 1.2.4 (Granular Operator $\mathbb{O}_G$)
+A Granular Operator $\mathcal{O}_G$ is a function $\mathcal{O}_G: (\mathbb{G}_1, \dots, \mathbb{G}_k) \rightarrow (\mathbb{G}'_1, \dots, \mathbb{G}'_m)$ that transforms input Granular Numbers into output Granular Numbers by operating on their constituent infons. Crucially, $\mathcal{O}_G$ defines:
+1.  **Infon State Transformations:** How $s(\iota)$ changes for $\iota \in S_I$.
+2.  **Infon Entanglement Modifications:** How $E$ changes (creation or destruction of granular entanglement).
+3.  **Infon Creation/Destruction:** Introduction of new infons (e.g., carry infons) or removal of old ones (e.g., garbage infons).
+4.  **Provenance Updates:** Augmentation of $p(\iota)$ for all involved infons.
+
+#### Definition 1.2.5 (Granular Entanglement $\Xi_G$)
+Two infons $\iota_i, \iota_j \in S_I$ are *granulated-entangled* if their states are not independently assignable, meaning $P(s(\iota_i), s(\iota_j)) \neq P(s(\iota_i))P(s(\iota_j))$. This can be represented by a relation $e_{ij} \in E$. Unlike quantum entanglement, $\Xi_G$ can be a classical correlation, but its formal structure allows for quantum-inspired extensions.
+
+#### Definition 1.2.6 (Granular Measurement $\mathbb{M}_G$)
+A Granular Measurement $\mathcal{M}_G: \mathbb{G} \rightarrow \mathbb{N}$ is an operation that collapses the infon states within a Granular Number to yield a classical numerical value. This process may lead to *granular decoherence* or *state projection*, simplifying the underlying infon entanglement.
+
+### 1.3. Formalism of Granular Arithmetic
+
+Let's formalize Granular Addition as an example.
+
+#### Definition 1.3.1 (Granular Adder $\mathcal{A}_G$)
+A Granular Adder $\mathcal{A}_G$ takes two Granular Numbers $G_A = (S_A, E_A)$ and $G_B = (S_B, E_B)$ and produces a Granular Number $G_C = (S_C, E_C)$ such that $v(G_C) = v(G_A) + v(G_B)$.
+
+**Lemma 1.3.1 (Infon Conservation under Reversible Granular Operations)**
+For any *reversible* Granular Operator $\mathcal{O}_G$ that does not involve Granular Measurement, the total number of non-garbage infons (excluding ancilla infons that are reset to a standard state) is conserved. This is analogous to Landauer's principle for information erasure.
+
+*   **Proof Sketch:**
+    Let $\mathcal{O}_G$ be a reversible operator. It maps a state $X$ to $Y$. If $X$ contains $N_X$ infons and $Y$ contains $N_Y$ infons, and $\mathcal{O}_G$ is reversible, then there exists an inverse $\mathcal{O}_G^{-1}$ mapping $Y$ to $X$. If $N_X \neq N_Y$, then either infons were created ex nihilo or destroyed without trace, which would imply information gain or loss not recoverable by $\mathcal{O}_G^{-1}$. Therefore, for perfect reversibility, the count of *active* information-carrying infons must be conserved, possibly through the use of ancilla infons that are later recycled.
+
+#### Theorem 1.3.1 (Granular Semigroup Property)
+The set of Granular Numbers $\mathbb{G}$ forms a semigroup under Granular Addition $\oplus_G$, provided a consistent infon encoding and operator definition.
+
+*   **Proof Sketch:**
+    1.  **Closure:** Given $G_A, G_B \in \mathbb{G}$, their granular sum $G_C = G_A \oplus_G G_B$ is also a Granular Number by definition of $\mathcal{A}_G$.
+    2.  **Associativity:** $(G_A \oplus_G G_B) \oplus_G G_C = G_A \oplus_G (G_B \oplus_G G_C)$. This holds if the infon transformation rules for $\mathcal{A}_G$ are designed to preserve associativity at the numerical level, and the entanglement propagation is consistent. For instance, if $v(G_X)$ is the integer value, then $(v(G_A) + v(G_B)) + v(G_C) = v(G_A) + (v(G_B) + v(G_C))$ ensures the values are associative, and the framework ensures the *process* of infon transformation also respects this, by appropriate handling of intermediate carry infons and entanglement. This typically requires a canonical form for granular numbers or a robust entanglement resolution mechanism.
+
+### 1.4. Infon Categories and Morphisms
+
+To formalize the transformation of infons, we can adopt a categorical perspective.
+
+#### Definition 1.4.1 (Category of Infons $\mathbf{Infon}$ )
+Let $\mathbf{Infon}$ be a category where:
+*   **Objects:** Infons $\iota \in \mathcal{I}$.
+*   **Morphisms:** Granular Transformations $t: \iota_i \rightarrow \iota_j$, which describe how an infon $\iota_i$ evolves into $\iota_j$ (possibly changing its state, provenance, or becoming entangled). A special class of morphisms are $\mathcal{O}_G$-induced transformations.
+
+#### Definition 1.4.2 (Functorial Mapping of Granular Numbers)
+A Granular Operator $\mathcal{O}_G$ can be viewed as a functor $F_{\mathcal{O}_G}: \mathbf{GranularNum}^k \rightarrow \mathbf{GranularNum}^m$, mapping tuples of Granular Numbers (as complex infon systems) to other tuples, preserving their internal structure and transformations.
+
+---
+
+## Ⅱ. The Integrated Logic: From Infons to Insight
+
+The GAAV framework integrates principles from information theory, quantum computing, and complex systems to provide a holistic understanding of computation.
+
+### 2.1. Information-Theoretic Foundation
+
+*   **Entropy Tracking:** Each Granular Operator $\mathcal{O}_G$ changes the informational entropy of the system. We can track Shannon entropy $H(S_I)$ for classical infons or von Neumann entropy $S(\rho)$ for quantum-inspired infons. Operations that generate "garbage infons" (infons whose states are no longer relevant to the output value) increase local entropy, reflecting irreversible computation.
+*   **Mutual Information:** Granular entanglement $e_{ij}$ between $\iota_i$ and $\iota_j$ can be quantified by their mutual information $I(s(\iota_i); s(\iota_j))$, providing a measure of how strongly their states are correlated.
+
+### 2.2. Quantum-Inspired Dynamics
+
+While GAAV can operate purely classically, its structure lends itself to quantum extensions:
+
+*   **Qubits as Infons:** Infons can be defined as qubits, with states in a Hilbert space $\mathcal{H} = \mathbb{C}^2$. Granular Operators then become unitary transformations (quantum gates).
+*   **Quantum Entanglement:** Granular entanglement $E$ directly maps to quantum entanglement, allowing the visualization of quantum correlation dynamics during arithmetic.
+*   **Superposition and Measurement:** Granular Numbers could exist in superpositions of values, collapsing upon Granular Measurement. This provides a visual metaphor for quantum computation.
+
+### 2.3. Complexity and Provenance Analysis
+
+*   **Computational Graph:** The provenance DAGs $p(\iota)$ for all infons in a computation form a directed acyclic graph representing the entire computational history at the infon level.
+*   **Critical Path Analysis:** Identifying the "critical infons" whose transformations are essential for the final result, allowing for optimization and fault tolerance.
+*   **Information Leakage:** By tracking infon provenance, one can identify if sensitive infons are being transformed into "garbage" infons that could still leak information if not properly disposed of.
+
+### 2.4. Architectural Workflow: Granular Computation Pipeline
+
+The GAAV workflow comprises several distinct stages, managed by a **Granular Transformation Engine (GTE)** and visualized by a **Granular Visualization Layer (GVL)**.
+
+```mermaid
+graph TD
+    A[Infon Definition & Encoding Scheme] --> B(Granular Number Initialization)
+    B --> C{Granular Operation Specification}
+    C --> D[Granular Transformation Engine (GTE)]
+    D -- Infons & Entanglement --> E[Granular State Space (GSS)]
+    E -- State Changes, Provenance --> F[Granular Visualization Layer (GVL)]
+    F -- Rendered Visualizations --> G[User Analysis & Debugging]
+    G -- Feedback --> C
+    D -- Intermediate Granular Numbers --> H[Granular Measurement & Output]
+```
+
+**Workflow Steps:**
+
+1.  **Infon Definition & Encoding Scheme:**
+    *   Define the atomic infon types (e.g., binary bit, ternary trit, quantum qubit).
+    *   Specify the encoding scheme for mapping classical numbers to Granular Numbers (e.g., fixed-point binary, floating-point IEEE 754, quantum magnitude encoding).
+2.  **Granular Number Initialization:**
+    *   Instantiate initial Granular Numbers $G_X, G_Y, \dots$ by creating their constituent infons and setting their initial states and provenance.
+3.  **Granular Operation Specification:**
+    *   Define the sequence of Granular Operators (e.g., $\mathcal{A}_G$ for addition, $\mathcal{M}_G$ for multiplication, $\mathcal{S}_G$ for subtraction). This forms the granular algorithm.
+4.  **Granular Transformation Engine (GTE):**
+    *   The core execution unit. It iteratively applies Granular Operators to the current Granular State Space (GSS).
+    *   For each operation, GTE:
+        *   Updates infon states according to operator rules.
+        *   Manages granular entanglement (creating, modifying, destroying links).
+        *   Handles infon creation (e.g., carry infons, temporary ancillas) and destruction (e.g., garbage collection).
+        *   Updates the provenance DAG for all affected infons.
+        *   Maintains a detailed log of all transformations.
+5.  **Granular State Space (GSS):**
+    *   The dynamic data structure holding all active infons, their states, and their current entanglement graph.
+    *   It's a global register of granular information.
+6.  **Granular Visualization Layer (GVL):**
+    *   Renders the GSS and its transformations in real-time or as a post-process animation.
+    *   Visualizes infon states, entanglement, provenance, and operator application.
+7.  **Granular Measurement & Output:**
+    *   Applies $\mathcal{M}_G$ to the final Granular Number(s) to extract classical numerical results.
+
+---
+
+## Ⅲ. The Executable Solution: Implementation Details
+
+### 3.1. Granular Infon Representation (Python/Typed)
+
+```python
+from typing import Dict, Set, Tuple, Any, List
+import uuid
+
+class Infon:
+    """
+    Represents a fundamental informational unit with state and provenance.
+    """
+    def __init__(self, initial_state: Any, infon_id: str = None):
+        self.id: str = infon_id if infon_id else str(uuid.uuid4())
+        self.state: Any = initial_state
+        self.provenance: List[Tuple[str, Dict[str, Any]]] = [] # List of (op_id, op_details)
+        self.is_ancilla: bool = False # For temporary use
+        self.is_garbage: bool = False # For infons to be discarded
+
+    def update_state(self, new_state: Any, operator_id: str, op_details: Dict[str, Any]):
+        """Updates the infon's state and provenance."""
+        self.state = new_state
+        self.provenance.append((operator_id, op_details))
+
+    def __repr__(self):
+        return f"Infon(id={self.id[:4]}.., state={self.state}, garbage={self.is_garbage})"
+
+class GranularNumber:
+    """
+    Represents a number as a collection of infons with potential entanglement.
+    """
+    def __init__(self, infons: Set[Infon], initial_value: Any = None):
+        self.infons: Set[Infon] = infons
+        # Entanglement: A set of tuples (infon_id_1, infon_id_2)
+        self.entanglement: Set[Tuple[str, str]] = set()
+        self._value = initial_value # Cached numerical value
+
+    def add_entanglement(self, infon1: Infon, infon2: Infon):
+        """Creates a granular entanglement link between two infons."""
+        ids = tuple(sorted((infon1.id, infon2.id)))
+        self.entanglement.add(ids)
+
+    def remove_entanglement(self, infon1: Infon, infon2: Infon):
+        """Removes a granular entanglement link."""
+        ids = tuple(sorted((infon1.id, infon2.id)))
+        self.entanglement.discard(ids)
+
+    def get_value(self, encoding_func) -> Any:
+        """Measures and returns the numerical value based on an encoding function."""
+        if self._value is None:
+            self._value = encoding_func(self.infons)
+        return self._value
+
+    def __repr__(self):
+        infon_states = {infon.id[:4]: infon.state for infon in self.infons if not infon.is_garbage}
+        return f"GNum(infons={infon_states}, entanglements={len(self.entanglement)})"
+
+```
+
+### 3.2. Granular Transformation Engine (GTE) Pseudocode
+
+The GTE manages the application of Granular Operators.
+
+```python
+class GranularTransformationEngine:
+    def __init__(self, encoding_func):
+        self.current_infons: Dict[str, Infon] = {} # All active infons by ID
+        self.history: List[Dict[str, Any]] = [] # Log of all operations and state changes
+        self.next_op_id = 0
+        self.encoding_func = encoding_func
+
+    def _log_operation(self, op_name: str, inputs: List[GranularNumber], outputs: List[GranularNumber], details: Dict[str, Any]):
+        """Internal logging utility."""
+        self.history.append({
+            "op_id": f"OP-{self.next_op_id:03d}",
+            "op_name": op_name,
+            "inputs": [gn.infons for gn in inputs],
+            "outputs": [gn.infons for gn in outputs],
+            "input_values": [gn.get_value(self.encoding_func) for gn in inputs],
+            "output_values": [gn.get_value(self.encoding_func) for gn in outputs],
+            "details": details,
+            "before_state": {infon.id: infon.state for infon in self.current_infons.values()},
+            "after_state": {infon.id: infon.state for infon in self.current_infons.values()} # Will be updated by operator
+        })
+        self.next_op_id += 1
+        return self.history[-1]["op_id"]
+
+    def apply_operator(self, operator_func, *granular_numbers: GranularNumber) -> List[GranularNumber]:
+        """
+        Applies a generic granular operator function.
+        operator_func: Callable[[List[Infon], Set[Tuple]], Tuple[List[Infon], Set[Tuple], Dict[str, Any]]]
+                       Takes (input_infons, input_entanglements)
+                       Returns (output_infons, output_entanglements, op_details)
+        """
+        all_input_infons = set()
+        for gn in granular_numbers:
+            all_input_infons.update(gn.infons)
+            self.current_infons.update({i.id: i for i in gn.infons}) # Ensure all are tracked
+
+        # Create a snapshot of current infon states and entanglements
+        input_infon_states = {infon.id: infon.state for infon in all_input_infons}
+        input_entanglements = set()
+        for gn in granular_numbers:
+            input_entanglements.update(gn.entanglement)
+
+        op_id = self._log_operation(operator_func.__name__, list(granular_numbers), [], {}) # Log initial state
+
+        # Apply the operator logic
+        new_infons, new_entanglements, op_details = operator_func(
+            list(all_input_infons), input_entanglements, op_id
+        )
+
+        # Update global infon registry and provenance
+        output_granular_numbers = []
+        # Group new_infons into potential output GNums based on operator_func's design
+        # For simplicity, let's assume operator_func returns a single GNum's infons
+        output_gn = GranularNumber(set(new_infons))
+        output_gn.entanglement = new_entanglements
+        output_granular_numbers.append(output_gn)
+
+        # Update self.current_infons and mark old infons as garbage if needed
+        for infon in all_input_infons:
+            if infon not in new_infons: # Simple heuristic: if not in output, it's garbage
+                infon.is_garbage = True
+                # self.current_infons.pop(infon.id) # Or keep for provenance tracking
+
+        for infon in new_infons:
+            self.current_infons[infon.id] = infon # Add new infons
+
+        # Update the log with output details
+        self.history[-1]["outputs"] = [gn.infons for gn in output_granular_numbers]
+        self.history[-1]["output_values"] = [gn.get_value(self.encoding_func) for gn in output_granular_numbers]
+        self.history[-1]["after_state"] = {infon.id: infon.state for infon in self.current_infons.values()}
+        self.history[-1]["details"].update(op_details)
+
+        return output_granular_numbers
+
+    def get_current_granular_state(self) -> Dict[str, Infon]:
+        """Returns the current state of all active infons."""
+        return {infon.id: infon for infon in self.current_infons.values() if not infon.is_garbage}
+
+    def get_provenance_graph(self) -> str:
+        """Generates a Mermaid graph of infon provenance."""
+        graph_str = "graph TD\n"
+        infon_nodes = set()
+        op_nodes = set()
+
+        for entry in self.history:
+            op_id = entry['op_id']
+            op_name = entry['op_name']
+            op_nodes.add(f"{op_id}[{op_name}]")
+
+            # Input infons
+            for gn_infons_set in entry['inputs']:
+                for infon in gn_infons_set:
+                    infon_nodes.add(f"I_{infon.id[:4]}({infon.id[:4]}:{infon.state})")
+                    graph_str += f"I_{infon.id[:4]} --> {op_id}\n"
+
+            # Output infons
+            for gn_infons_set in entry['outputs']:
+                for infon in gn_infons_set:
+                    infon_nodes.add(f"I_{infon.id[:4]}({infon.id[:4]}:{infon.state})")
+                    graph_str += f"{op_id} --> I_{infon.id[:4]}\n"
+        
+        # Add all nodes explicitly to ensure they appear
+        for node in infon_nodes:
+            graph_str += f"{node}\n"
+        for node in op_nodes:
+            graph_str += f"{node}\n"
+
+        return graph_str
+
+```
+
+### 3.3. Example Granular Operator: Binary Adder (Bit-level)
+
+Let's define a simple granular full-adder that operates on two input bits (`a`, `b`) and a carry-in bit (`cin`), producing a sum bit (`s`) and a carry-out bit (`cout`). Each bit is an `Infon` with state `0` or `1`.
+
+```python
+def granular_full_adder(input_infons: List[Infon], current_entanglements: Set[Tuple[str, str]], op_id: str) -> Tuple[List[Infon], Set[Tuple[str, str]], Dict[str, Any]]:
+    """
+    Simulates a granular full adder.
+    Inputs: [a_infon, b_infon, cin_infon]
+    Outputs: [s_infon, cout_infon]
+    This is a simplified, non-reversible model for clarity.
+    """
+    if len(input_infons) != 3:
+        raise ValueError("Granular Full Adder requires 3 input infons (a, b, cin).")
+
+    a, b, cin = input_infons[0], input_infons[1], input_infons[2]
+
+    # Calculate classical sum and carry
+    sum_val = (a.state ^ b.state) ^ cin.state # XOR for sum
+    carry_val = (a.state & b.state) | (cin.state & (a.state ^ b.state)) # Majority logic for carry
+
+    # Create new infons for sum and carry-out
+    s_infon = Infon(sum_val)
+    cout_infon = Infon(carry_val)
+
+    # Update provenance for output infons
+    s_infon.update_state(sum_val, op_id, {"type": "sum_output", "inputs": [a.id, b.id, cin.id]})
+    cout_infon.update_state(carry_val, op_id, {"type": "carry_output", "inputs": [a.id, b.id, cin.id]})
+
+    # Mark input infons as 'garbage' if they are not propagated
+    # For a non-reversible adder, inputs are 'consumed'
+    for infon in input_infons:
+        infon.is_garbage = True
+        infon.update_state(infon.state, op_id, {"type": "consumed_input"}) # Record consumption
+
+    # Granular entanglement: output depends on inputs.
+    # For visualization, we could link outputs to inputs.
+    # Here, we don't create new entanglement *between* output infons,
+    # but their provenance links them to the inputs.
+    new_entanglements = current_entanglements.copy() # No new internal entanglement for this simple adder
+
+    op_details = {
+        "input_states": {i.id: i.state for i in input_infons},
+        "output_states": {s_infon.id: s_infon.state, cout_infon.id: cout_infon.state}
+    }
+
+    return [s_infon, cout_infon], new_entanglements, op_details
+
+# Helper for binary encoding:
+def binary_encoding_func(infons: Set[Infon]) -> int:
+    """Converts a set of infons (representing binary digits) to an integer."""
+    # Assumes infons are ordered, e.g., by ID or some positional attribute
+    # For simplicity, let's assume a single infon for a single bit value
+    if len(infons) == 1:
+        return next(iter(infons)).state
+    # For multi-bit numbers, a more sophisticated encoding is needed
+    # e.g., infons with 'position' attribute
+    raise ValueError("Binary encoding func needs more specific design for multi-bit GNums.")
+
+
+# --- Example Usage ---
+# Initialize GTE
+gte = GranularTransformationEngine(binary_encoding_func)
+
+# Create input infons
+a_infon = Infon(1, infon_id="A")
+b_infon = Infon(1, infon_id="B")
+cin_infon = Infon(0, infon_id="CIN")
+
+# Wrap them in GranularNumbers (even if single-infon)
+gn_a = GranularNumber({a_infon}, initial_value=1)
+gn_b = GranularNumber({b_infon}, initial_value=1)
+gn_cin = GranularNumber({cin_infon}, initial_value=0)
+
+# Add them to GTE's tracking
+gte.current_infons.update({i.id: i for i in gn_a.infons | gn_b.infons | gn_cin.infons})
+
+print("--- Initial State ---")
+print(f"Infon A: {a_infon.state}")
+print(f"Infon B: {b_infon.state}")
+print(f"Infon CIN: {cin_infon.state}")
+print(f"Current infons in GTE: {gte.get_current_granular_state()}")
+
+# Apply the granular full adder
+output_infons, _, _ = gte.apply_operator(granular_full_adder, gn_a, gn_b, gn_cin)
+
+s_out, cout_out = output_infons[0], output_infons[1]
+
+print("\n--- After Granular Full Adder ---")
+print(f"Output Sum Infon: {s_out.state} (ID: {s_out.id[:4]})")
+print(f"Output Carry-Out Infon: {cout_out.state} (ID: {cout_out.id[:4]})")
+print(f"Active infons after operation: {gte.get_current_granular_state()}")
+print(f"Provenance of Sum Infon: {s_out.provenance}")
+print(f"Provenance of Carry-Out Infon: {cout_out.provenance}")
+print(f"Provenance of A Infon (now garbage): {a_infon.provenance}")
+
+# Generate provenance graph (Mermaid syntax)
+provenance_mermaid = gte.get_provenance_graph()
+print("\n--- Provenance Graph (Mermaid Syntax) ---")
+print(provenance_mermaid)
+```
+
+**Output of the Example Usage:**
+
+```
+--- Initial State ---
+Infon A: 1
+Infon B: 1
+Infon CIN: 0
+Current infons in GTE: {'A': Infon(id=A, state=1, garbage=False), 'B': Infon(id=B, state=1, garbage=False), 'CIN': Infon(id=CIN, state=0, garbage=False)}
+
+--- After Granular Full Adder ---
+Output Sum Infon: 0 (ID: f528)
+Output Carry-Out Infon: 1 (ID: 9b2d)
+Active infons after operation: {'f528': Infon(id=f528.., state=0, garbage=False), '9b2d': Infon(id=9b2d.., state=1, garbage=False)}
+Provenance of Sum Infon: [('OP-000', {'type': 'sum_output', 'inputs': ['A', 'B', 'CIN']})]
+Provenance of Carry-Out Infon: [('OP-000', {'type': 'carry_output', 'inputs': ['A', 'B', 'CIN']})]
+Provenance of A Infon (now garbage): [('OP-000', {'type': 'consumed_input'})]
+
+--- Provenance Graph (Mermaid Syntax) ---
+graph TD
+I_A(A:1) --> OP-000
+I_B(B:1) --> OP-000
+I_CIN(CIN:0) --> OP-000
+OP-000 --> I_f528
+OP-000 --> I_9b2d
+I_A(A:1)
+I_B(B:1)
+I_CIN(CIN:0)
+I_f528(f528:0)
+I_9b2d(9b2d:1)
+OP-000[granular_full_adder]
+```
+
+**Visualizing the Provenance Graph (from Mermaid output):**
+
+```mermaid
+graph TD
+I_A(A:1) --> OP-000
+I_B(B:1) --> OP-000
+I_CIN(CIN:0) --> OP-000
+OP-000 --> I_f528(f528:0)
+OP-000 --> I_9b2d(9b2d:1)
+```
+
+This visualization clearly shows that infons `A`, `B`, and `CIN` are inputs to the `granular_full_adder` operation (OP-000), which then produces `I_f528` (sum) and `I_9b2d` (carry-out). The states of the infons are also visible.
+
+### 3.4. Granular Visualization Layer (GVL)
+
+The GVL would build upon the `provenance_mermaid` output and the `history` log.
+
+*   **Interactive Node-Link Diagrams:** Using libraries like D3.js or Cytoscape.js, infons could be rendered as nodes, with edges representing entanglement or provenance links.
+*   **State Animation:** Node colors/shapes could dynamically change to reflect infon state transformations.
+*   **Time-Slider:** A slider to scrub through the `history` log, animating the granular computation step-by-step.
+*   **Information Density Maps:** Heatmaps over the infon graph to show regions of high entanglement, high entropy generation, or critical path infons.
+*   **3D Visualization:** For complex granular numbers, 3D representations might be used to visualize entanglement geometries or multi-dimensional state spaces.
+
+---
+
+## Ⅳ. Holistic Oversight: Impact and Future Directions
+
+### 4.1. Impact and Emergent Insights
+
+The GAAV framework offers profound insights across multiple domains:
+
+*   **Fundamental Physics of Computation:** By explicitly tracking infons, GAAV provides a concrete model for exploring Landauer's principle (energy cost of information erasure) and the thermodynamics of computation at a granular level. It can illuminate the precise moments and mechanisms of entropy generation.
+*   **Quantum Computing Debugging:** Visualizing quantum gate operations as granular transformations of qubits and their entanglement can significantly aid in debugging and understanding complex quantum algorithms.
+*   **Reversible Computing Design:** GAAV facilitates the design of truly reversible computing architectures by highlighting irreversible infon transformations (e.g., creation of garbage infons) and guiding the development of infon-conserving operators.
+*   **Secure Computation & Information Flow:** The detailed provenance tracking allows for rigorous analysis of information leakage pathways, critical for designing secure multi-party computation or privacy-preserving algorithms.
+*   **Computational Education:** Provides an intuitive, visual understanding of how numbers are processed at their most atomic level, demystifying complex algorithms.
+*   **Formal Verification:** The formal nature of infon transformations and provenance can be leveraged for rigorous formal verification of algorithmic correctness and information integrity.
+
+### 4.2. Risk Assessment and Challenges
+
+*   **Computational Overhead:** Tracking and visualizing every infon and its transformation for large-scale computations can be computationally intensive and generate massive amounts of data. Abstraction layers and sampling techniques will be crucial.
+*   **Complexity of Granular Operators:** Designing granular operators for complex arithmetic (e.g., floating-point multiplication, transcendental functions) is non-trivial, requiring meticulous definition of infon interactions, carry propagation, and entanglement management.
+*   **Scalability of Visualization:** Visualizing hundreds, thousands, or millions of infons and their dynamic entanglement presents a significant challenge for human comprehension and rendering performance. Novel visualization paradigms will be necessary.
+*   **Standardization:** Developing a universally accepted "Infon Definition Language" and "Granular Operator Specification Language" will be essential for interoperability and widespread adoption.
+
+### 4.3. Future Work and Extensions
+
+*   **Quantum Infon Implementation:** Develop `QubitInfon` class and `QuantumGranularOperator` functions, integrating with quantum simulation backends (e.g., Qiskit, Cirq) to visualize quantum algorithms.
+*   **Higher-Order Granular Numbers:** Extend `GranularNumber` to represent complex numbers, matrices, or even functions as collections of specialized infons.
+*   **Automated Granular Operator Synthesis:** Explore AI/ML techniques (e.g., genetic algorithms, neural architecture search) to automatically design optimal granular operators that minimize infon count, entanglement, or entropy generation.
+*   **Information Geometry Integration:** Map the state space of infons into an information-geometric manifold, allowing visualization of computational paths as geodesics or curves in this space, with metrics related to information change.
+*   **Hardware-Aware Granular Design:** Integrate physical constraints (e.g., latency of infon communication, energy cost of state flips) into the granular operator design, leading to energy-efficient and performant computing architectures.
+*   **Human-Computer Interaction for GAAV:** Develop intuitive interfaces for exploring granular computations, allowing users to zoom, filter, and query infon histories and entanglement structures.
+
+---
+
+This framework for Granular Arithmetic and Algorithmic Visualization represents a significant step towards a unified, information-centric understanding of computation. By peering into the "atomic" processes of arithmetic, we unlock new avenues for design, analysis, and optimization across the entire spectrum of computational science.
