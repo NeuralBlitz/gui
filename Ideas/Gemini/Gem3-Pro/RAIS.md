@@ -81,17 +81,23 @@ Let the current state estimate be $\mu_t$.
 Let the incoming observation (new transaction block) be $o_t$.
 
 1.  **Prediction Error ($\epsilon$):**
+
     $$ \epsilon_t = o_t - g(\mu_t) $$
+    
     *(Where $g$ is the generative function mapping state to observation).*
 
-2.  **Precision Weighting ($\Sigma^{-1}$):**
+3.  **Precision Weighting ($\Sigma^{-1}$):**
     We weight the error by the inverse variance (uncertainty) of the sensor/peer.
+
     $$ \xi_t = \Sigma^{-1} \cdot \epsilon_t $$
 
-3.  **State Update (The "Langevin Step"):**
+5.  **State Update (The "Langevin Step"):**
     The node updates its ledger state by moving down the free energy gradient:
+
     $$ \dot{\mu} = D \mu - \partial_{\mu} \mathcal{F} $$
+    
     Expanded:
+
     $$ \mu_{t+1} = \mu_t + \kappa \left( \frac{\partial g}{\partial \mu}^T \xi_t - \frac{\partial D_{KL}}{\partial \mu} \right) $$
 
     *   $\kappa$: Learning rate.
