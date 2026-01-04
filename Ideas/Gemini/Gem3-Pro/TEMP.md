@@ -16,16 +16,20 @@ Let $\mathcal{M}$ be a smooth, differentiable Riemannian manifold of dimension $
 
 **Definition 2 (The Information Lagrangian):**
 We define the system's action $\mathcal{S}$ based on the principle of least action, combining Shannon Entropy ($H$) and Fisher Information ($\mathcal{I}$):
+
 $$
 \mathcal{S} = \int_{t_0}^{t_1} \left( \alpha \frac{\partial H}{\partial t} - \beta \text{Tr}(\mathcal{I}^{-1} \cdot \nabla_\theta \mathcal{L}) \right) dt
 $$
+
 Where $\alpha, \beta$ are scaling constants for thermodynamic cost and information gain, respectively, and $\nabla_\theta \mathcal{L}$ is the gradient of the loss function regarding the system's predictive model.
 
 **Definition 3 (The Consensus Condition):**
 Consensus is achieved when the Ricci curvature scalar $R$ of the manifold converges to a constant uniform distribution across the topological lattice:
+
 $$
 \lim_{t \to \infty} \frac{\partial g_{ij}}{\partial t} = -2 R_{ij}
 $$
+
 This is the Hamilton-Perelman Ricci Flow equation, applied here to smooth out information asymmetries (disagreements) between nodes.
 
 ### 1.2 State Space Variables
