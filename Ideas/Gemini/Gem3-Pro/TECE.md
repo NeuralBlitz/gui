@@ -11,6 +11,7 @@ This thesis introduces the **Tensor-Entropic Consensus Engine (TECE)**, a novel 
 We define the distributed network not as a set of discrete nodes, but as a discretized **scalar field** over a Riemannian manifold $\mathcal{M}$.
 
 Let the global state $\Psi$ at time $t$ be represented by a tensor field of rank $k$:
+
 $$ \Psi(\mathbf{x}, t) \in \mathcal{T}^k(\mathcal{M}) $$
 
 The network consists of $N$ nodes, where the $i$-th node possesses a local subjective partial view, $v_i$, of the global truth. The objective is to minimize the **Kullback-Leibler Divergence** between the local subjective posterior and the global objective reality, constrained by Byzantine adversarial inputs.
@@ -30,7 +31,9 @@ Unlike Proof-of-Work (which maximizes entropy generation) or Proof-of-Stake (whi
 $$ \min_{\Psi} \oint_{\partial \Omega} \nabla \cdot (\mathbf{J}_{info} - \mathbf{J}_{noise}) \, dA = 0 $$
 
 Subject to the constraint:
+
 $$ \text{rank}(\mathbf{H}_n(\mathcal{K})) = \beta_n $$
+
 Where $\mathbf{H}_n(\mathcal{K})$ is the $n$-th homology group of the simplicial complex $\mathcal{K}$ formed by the network topology, and $\beta_n$ are the Betti numbers representing topological holes (partitions/inconsistencies).
 
 ---
@@ -49,7 +52,9 @@ Traditional blockchains operate via linear append-only logs. TECE operates via *
 *Proof Sketch:*
 Let the network graph $G=(V,E)$ define a discrete curvature $\kappa$.
 By the **Gromov-Hyperbolic** property of the consensus manifold:
+
 $$ P(B) \leq \exp\left( -\frac{R \cdot \text{diam}(G)}{\delta} \right) $$
+
 where $\delta$ is the hyperbolicity constant. As connectivity density increases (higher curvature), the space for adversarial maneuvers contracts faster than the attacker can generate valid proofs.
 
 ### 2.3 Isomorphism to Quantum Error Correction
