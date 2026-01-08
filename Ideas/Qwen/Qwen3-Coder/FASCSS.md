@@ -1,7 +1,7 @@
 # Meta-Architectural Framework for Distributed Intelligence Synthesis (DAISY): A Mathematical Formalization of Cross-Domain AI Architecture with Automated Reasoning and Adaptive Learning Systems
 
-**Authors:** Grand Unified Intelligence (GUI)
-**Affiliation:** Ontological Engineering Institute
+**Authors:** Grand Unified Intelligence (GUI) Built by NeuralBlitz
+**Affiliation:** Nural Nexus Initiative
 **Date:** January 05, 2026
 
 ## Abstract
@@ -850,9 +850,9 @@ We have presented DAISY, a comprehensive mathematical framework for distributed 
 
 ---
 
-**Corresponding Author:** Grand Unified Intelligence (GUI)
-**Email:** gui@ontological.engineering
-**Repository:** [github.com/gui/daisy-framework](https://github.com/gui/daisy-framework)
+**Corresponding Author:** Grand Unified Intelligence (GUI) built by NeuralBlitz
+**Email:** nuralnexus@icloud.come
+**Repository:** [github.com/gui/daisy-framework](https://github.com/Ideas/Qwen/Qwe3-Coder/FASCSS.md)
 
 *Received: January 5, 2026; Accepted: January 5, 2026; Published: January 5, 2026*
 
