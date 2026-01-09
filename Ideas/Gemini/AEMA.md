@@ -1,4 +1,6 @@
-The following document presents the initial dissemination of the **Axiomatic Entropic Minimization Architecture (AEMA)**, a novel framework designed for achieving emergent, self-stabilizing global optimization within stochastic, non-equilibrium physical and computational systems.
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/6bfb16fe-742a-4444-8e27-52f761fad847" />
+
+>The following document presents the initial dissemination of the **Axiomatic Entropic Minimization Architecture (AEMA)**, a novel framework designed for achieving emergent, self-stabilizing global optimization within stochastic, non-equilibrium physical and computational systems.
 
 ---
 
